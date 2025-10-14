@@ -33,3 +33,8 @@ print(f.subs(x, 0))
 
 from sympy import solveset, Eq
 print(solveset(Eq(x**2 + 2*x -8, 0), x))
+
+from sympy import diff
+x = Symbol("x")
+f = x**4 + 5*x
+print(f.diff(x,2))
