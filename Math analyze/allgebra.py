@@ -1,6 +1,6 @@
 import numpy as np
 import sympy as sympy
-from sympy import Symbol, S #импортируем нужные функции для обозначения переменных
+from sympy import * #импортируем нужные функции для обозначения переменных
 from sympy.calculus.util import function_range #импортируем функцию для поиска области значения
 from sympy.calculus.util import continuous_domain #импортируем функцию для поиска области определения
 x = Symbol("x") #определяем нашу переменную
@@ -38,3 +38,24 @@ from sympy import diff
 x = Symbol("x")
 f = x**4 + 5*x
 print(f.diff(x,2))
+
+#Область определения
+x = Symbol("x")
+f = (x**3)/(x**2 - 1)
+print(continuous_domain(f, x, S.Reals)) #Область определения функции f от x, S.Reals - вещественные числа
+
+#Область значений функции
+f = (x**3)/(x**2 - 1)
+print(function_range(f, x, S.Reals))
+
+#Нахождение точек пересечения с осями координат
+f = (x**3)/(x**2 - 1)
+print(solveset(Eq(f,0), x)) #
+print(f.subs(x, 0)) #
+
+# Нахождение производной
+f = (x**3)/(x**2 - 1)
+print(f.diff(x)) #
+
+y = f.diff(x)
+print(solveset(Eq(y, 0), x)) #
