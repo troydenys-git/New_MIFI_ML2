@@ -50,12 +50,26 @@ print(function_range(f, x, S.Reals))
 
 #Нахождение точек пересечения с осями координат
 f = (x**3)/(x**2 - 1)
-print(solveset(Eq(f,0), x)) #
-print(f.subs(x, 0)) #
+print(solveset(Eq(f,0), x)) # 
+print(f.subs(x, 0)) # 
 
 # Нахождение производной
 f = (x**3)/(x**2 - 1)
-print(f.diff(x)) #
+print(f.diff(x)) # 
 
 y = f.diff(x)
-print(solveset(Eq(y, 0), x)) #
+print(solveset(Eq(y, 0), x)) # 
+
+from sympy import exp #добавляем функцию для вычисления экспоненциальной функции
+x = Symbol("x")
+f = 1/(1+(exp(x)**(-4)))
+print(function_range(f, x, S.Reals))
+print(f)
+
+from sympy import symbols, cos, diff
+
+a, b, c = symbols('a b c', real=True)
+f = 5*a*b - a*cos(c) + a**8 + c**2*b
+
+print(diff(f, a))
+
