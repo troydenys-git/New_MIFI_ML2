@@ -1,5 +1,3 @@
-Задание 1 расчет вручную, задание 2 самостоятельно (вручную) и с помощью Python. Сравните результаты. Задание 3 решите задачу линейной регрессии, реализовав градиентный спуск самостоятельно, не используя готовое решение из какой-либо библиотеки.
-
 Hours Studied,Previous Scores,Extracurricular Activities,Sleep Hours,Sample Question Papers Practiced,Performance Index
 7,99,Yes,9,1,91.0
 4,82,No,4,2,65.0
