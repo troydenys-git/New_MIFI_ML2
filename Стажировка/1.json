@@ -1,0 +1,81 @@
+{
+            "name": "SpecificationAnalysisWithReasoning",
+            "strict": True,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "reasoning_schema_used": {
+                        "type": "boolean"
+                    },
+                    "overall_summary": {
+                        "type": "string"
+                    },
+                    "criteria_analysis": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "criterion_id": {"type": "integer"},
+                                "criterion_name": {"type": "string"},
+                                "criterion_description": {"type": "string"},
+                                "importance_level": {"type": "integer"},
+                                "criterion_understanding": {"type": "string"},
+                                "relevant_sections": {"type": "string"},
+                                "reasoning_steps": {"type": "string"},
+                                "status": {
+                                    "type": "string",
+                                    "enum": ["✅ Выполнено", "⚠️ Частично", "❌ Не выполнено"]
+                                },
+                                "quote_or_evidence": {"type": "string"},
+                                "recommendation": {
+                                    "type": ["string", "null"]
+                                },
+                                "confidence_score": {
+                                    "type": ["number", "null"],
+                                    "minimum": 0.0,
+                                    "maximum": 1.0
+                                },
+                                "confidence_explanation": {
+                                    "type": ["string", "null"]
+                                }
+                            },
+                            "required": [
+                                "criterion_id", "criterion_name", "criterion_description",
+                                "importance_level", "criterion_understanding",
+                                "relevant_sections", "reasoning_steps", "status",
+                                "quote_or_evidence", "recommendation", "confidence_score",
+                                "confidence_explanation"
+                            ],
+                            "additionalProperties": False
+                        }
+                    },
+                    "metrics": {
+                        "type": "object",
+                        "properties": {},
+                        "additionalProperties": False  
+                    }
+        },
+        "required": ["reasoning_schema_used", "overall_summary", "criteria_analysis", "metrics"],
+        "additionalProperties": False
+    }
+}
+
+        print(f"\n📤 Отправляю запрос к VseGPT...")
+        print(f"   Количество критериев: {len(criteria)}")
+        print(f"   Размер ТЗ: {len(spec_text)} символов")
+        
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                max_tokens=8000,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": json_schema
+                }
+            )
