@@ -1,0 +1,17 @@
+# uv / Python
+.venv/
+__pycache__/
+
+# Чекпоинты моделей
+models/
+
+# Секреты
+.env
+
+# Датасет
+data/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

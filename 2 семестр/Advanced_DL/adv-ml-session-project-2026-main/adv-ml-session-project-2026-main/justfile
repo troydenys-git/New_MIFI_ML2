@@ -1,0 +1,29 @@
+set dotenv-load := true
+
+default:
+    @just --list
+
+# Обновить uv.lock
+lock:
+    uv lock
+
+# Установить Python 3.12 и зависимости
+install:
+    uv python install 3.12
+    uv sync --all-groups
+
+# Скачать GTZAN в ./data (нужен KAGGLE_API_TOKEN в .env или ~/.kaggle/kaggle.json)
+download-dataset:
+    uv run python download_dataset.py
+
+# Jupyter Lab в корне проекта
+lab:
+    uv run jupyter lab
+
+# Jupyter Lab с открытым main.ipynb
+notebook:
+    uv run jupyter lab main.ipynb
+
+# Выполнить ноутбук целиком (без UI)
+execute:
+    uv run jupyter nbconvert --to notebook --execute main.ipynb --inplace
